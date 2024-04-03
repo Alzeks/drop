@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>Drad and drop</title>
+
+    <!-- <script src="bandle.js"></script> -->
+</head>
+
+<body>
+    <h1>Drad and drop by click</h1>
+
+    <div id="block"></div>
+    <div id="block2"></div>
+    <div id="block3" draggable="true"></div>
+
+    <input type="text" value="" oninput="writeInput(this)" />
+    <button onclick="output()">Type A</button>
+    <button onclick="output2()">Type B length up to 5</button>
+
+    <script src="./bandle.js"></script>
+    <style>
+        #block,
+        #block2,
+        #block3 {
+            display: flex;
+            gap: 2px;
+            margin-left: 30px;
+            font-size: 30px;
+            color: green;
+        }
+    </style>
+</body>
+
+</html>
