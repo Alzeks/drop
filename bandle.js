@@ -1,56 +1,58 @@
 
-let word = ''
-function writeInput(e) {
-    word = e.value
+function filterSelected(item, selected) {
+    let res = true;
+    Array.from(selected).forEach(function (selected) {
+        if (selected == item) { res = false }
+    })
+    return res
 }
 
+let word = ''
+function writeInput(e) { word = e.value }
+
 function output() {
-    let arr = Array.from(word)
-    let block = document.getElementById('block')
-    let block2 = document.getElementById('block2')
+    const arr = Array.from(word)
+    const block = document.getElementById('block')
     arr.map((item) => {
-        let op = document.createElement('span');
-        op.innerHTML = item;
-        op.setAttribute('draggable', 'true')
-        op.addEventListener('dragend', function (event) {
-            op.style.position = 'absolute'
-            op.style.top = event.pageY + 'px';
-            op.style.left = event.pageX + 'px';
+        let span = document.createElement('span');
+        span.innerHTML = item;
+        span.setAttribute('draggable', 'true')
+        span.addEventListener('dragend', function (event) {
+            span.style.position = 'absolute'
+            span.style.top = event.pageY + 'px';
+            span.style.left = event.pageX + 'px';
         })
-        block.append(op)
+        block.append(span)
         document.body.append(block)
     }
     )
 }
 
-function output2() {
-    let cutedWord = word
-    let block3 = document.getElementById('block3');
+function variantB() {
+    let wordCopy = word
+    const block2 = document.getElementById('block2')
+    const block3 = document.getElementById('block3');
     block2.innerHTML = word
     document.body.append(block2)
+
     document.onselectionchange = function () {
         let selection = document.getSelection();
-
+        let selected = document.getSelection().toString();
         let chosenChange = ""
-        chosen = document.getSelection().toString();
 
-        if (chosen !== chosenChange) {
-            let stable = Array.from(cutedWord).filter((item) =>
-                item !== chosen[0] | chosen[1] | chosen[2] | chosen[3] | chosen[4]
-            ).join('')
-            cutedWord = stable
-            
-            block2.setAttribute('dragable', 'true')
-            block2.addEventListener('dragend', function (event) {
-                block3.style.position = 'absolute'
-                block3.style.top = event.pageY + 'px';
-                block3.style.left = event.pageX + 'px';
-                block3.innerHTML = chosen
-                block2.innerHTML = cutedWord
-            })
-            document.body.append(block3)
+        if (selected !== chosenChange) {
+            wordCopy = Array.from(wordCopy).filter((item) =>
+                filterSelected(item, selected)).join('')
         }
-        chosenChange = chosen
+        block2.setAttribute('dragable', 'true')
+        block2.addEventListener('dragend', function (event) {
+            block3.style.position = 'absolute'
+            block3.style.top = event.pageY + 'px';
+            block3.style.left = event.pageX + 'px';
+            block3.innerHTML = selected
+            block2.innerHTML = wordCopy
+        })
+        document.body.append(block3)
     };
 }
 
