@@ -10,7 +10,7 @@ function filterSelected(item, selected) {
 let word = ''
 function writeInput(e) { word = e.value }
 
-function output() {
+function variantA() {
     const arr = Array.from(word)
     const block = document.getElementById('block')
     arr.map((item) => {
