@@ -15,11 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: depends 
-      run: npm ci
+   # - name: depends 
+   #   run: npm ci
       
-    - name: build  
-      run: npm build 
+   # - name: build  
+   #   run: npm build 
       
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
